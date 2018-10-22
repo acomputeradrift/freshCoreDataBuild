@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="category">
-        <attribute name="name" attributeType="String" syncable="YES"/>
+    <entity name="Category" representedClassName=".Category" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="parent" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
-    <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="category">
-        <attribute name="name" attributeType="String" syncable="YES"/>
+    <entity name="SubCategory" representedClassName=".SubCategory" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="children" inverseEntity="Category" syncable="YES"/>
     </entity>
     <elements>

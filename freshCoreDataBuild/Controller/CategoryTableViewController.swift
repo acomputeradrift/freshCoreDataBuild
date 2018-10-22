@@ -7,12 +7,39 @@
 //
 
 import UIKit
+import CoreData
 
 class CategoryTableViewController: UITableViewController {
+    
+    var categories: [Category] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let context = AppDelegate.viewContext
+        
+        if categories.count == 0{
+            let category = Category(context:context)
+            category.name = "To Be Categorized"
+            
+            let subCategory = SubCategory(context:category.managedObjectContext!)
+            subCategory.name = "-"
+            
+            category.addToChildren(subCategory)
+            do {
+                try context.save()
+                //categories.append(category )
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+        let request =
+            NSFetchRequest<NSManagedObject>(entityName: "Category")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        categories = try! context.fetch(request) as! [Category]
+        print(categories)
+        //let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         //hard code a default item into the persistant container - separate function
 
         // Uncomment the following line to preserve selection between presentations
@@ -26,23 +53,25 @@ class CategoryTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return categories.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryTableViewCell", for: indexPath)
+        let category = categories[indexPath.row]
+        
+        cell.textLabel!.text = category.name
         // Configure the cell...
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
