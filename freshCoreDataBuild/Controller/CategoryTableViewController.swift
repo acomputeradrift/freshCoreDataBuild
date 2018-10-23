@@ -16,9 +16,7 @@ class CategoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        let context = AppDelegate.viewContext
-        print(categories.count)
+retrieveCategories()
 //        if categories.count == 0{
 //            let category = Category(context:context)
 //            category.name = "To Be Categorized"
@@ -77,7 +75,6 @@ class CategoryTableViewController: UITableViewController {
         category.name = categoryName
         do {
             try context.save()
-            //categories.append(category)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -96,8 +93,15 @@ class CategoryTableViewController: UITableViewController {
        // let context = AppDelegate.viewContext
     }
     
-    func deleteCategory(){
-        //let context = AppDelegate.viewContext
+    func deleteCategory(category: Category){
+        let context = AppDelegate.viewContext
+        context.delete(category)
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not save deletion. \(error), \(error.userInfo)")
+        }
+        retrieveCategories()
     }
  
     @IBAction func addName(_ sender: UIBarButtonItem) {
@@ -131,17 +135,19 @@ class CategoryTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let categoryToDelete = categories[indexPath.row]
+            deleteCategory(category: categoryToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.
