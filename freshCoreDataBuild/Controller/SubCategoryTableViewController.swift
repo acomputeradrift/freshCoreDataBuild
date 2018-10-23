@@ -7,40 +7,85 @@
 //
 
 import UIKit
+import CoreData
 
 class SubCategoryTableViewController: UITableViewController {
+    
+    var subCategories: [SubCategory] = []
+    var selectedCategoryName = String()
+    var selectedCategory = Category()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = selectedCategoryName
+        //this updates the local array
+        //retrieveSubCategories()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func createSubCategory(subCategoryName: String){
+        let context = AppDelegate.viewContext
+        let subCategory = SubCategory(context:context)
+        subCategory.name = subCategoryName
+        selectedCategory.children = [subCategory]
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not save subCategory. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func retrieveSubCategories(){
+        let context = AppDelegate.viewContext
+        let request =
+            NSFetchRequest<NSManagedObject>(entityName: "Category")
+        request.sortDescriptors = [NSSortDescriptor(key: "children", ascending: true)]
+        subCategories = try! context.fetch(request) as! [SubCategory]
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return subCategories.count
+    }
+    
+    @IBAction func addSubCategory(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New SubCategory",
+                                      message: "Add a new sub category",
+                                      preferredStyle: .alert)
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            [unowned self] action in
+            
+            guard let textField = alert.textFields?.first,
+                let subCategoryName = textField.text else {
+                    return
+            }
+            self.createSubCategory(subCategoryName: subCategoryName)
+            self.retrieveSubCategories()
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel)
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "subCategoryTableViewCell", for: indexPath)
+        let subCategory = subCategories[indexPath.row]
+        cell.textLabel!.text = subCategory.name
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
