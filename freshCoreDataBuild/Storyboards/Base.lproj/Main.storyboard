@@ -44,7 +44,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Idt-dS-ysN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="d1D-cA-Pc9"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="d1D-cA-Pc9">
+                            <connections>
+                                <action selector="addName:" destination="usd-pe-Btf" id="w9m-10-Fer"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rrh-gO-MTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
