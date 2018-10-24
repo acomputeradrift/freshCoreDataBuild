@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" id="Idt-dS-ysN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="d1D-cA-Pc9">
                             <connections>
-                                <action selector="addName:" destination="usd-pe-Btf" id="w9m-10-Fer"/>
+                                <action selector="addCategory:" destination="usd-pe-Btf" id="2nt-uF-pNp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
