@@ -19,7 +19,7 @@ class SubCategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = selectedCategoryName
         //this updates the local array
-        //retrieveSubCategories()
+        retrieveSubCategories()
 
     }
     
@@ -36,11 +36,30 @@ class SubCategoryTableViewController: UITableViewController {
     }
     
     func retrieveSubCategories(){
+//        let context = AppDelegate.viewContext
+//        let request =
+//            NSFetchRequest<NSManagedObject>(entityName: "SubCategory")
+//        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+//        let subPredicate = NSPredicate(format: "children.name == %@", self.selectedCategory.name)
+//        request.predicate = subPredicate
+        let subSet = selectedCategory.children
+        subCategories = subSet?.allObjects as! [SubCategory]
+
+        //subCategories = try! context.fetch(request) as! [SubCategory]
+        
+
+    }
+    
+    func deleteSubCategory(subCategory: SubCategory){
         let context = AppDelegate.viewContext
-        let request =
-            NSFetchRequest<NSManagedObject>(entityName: "Category")
-        request.sortDescriptors = [NSSortDescriptor(key: "children", ascending: true)]
-        subCategories = try! context.fetch(request) as! [SubCategory]
+        context.delete(subCategory)
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not save deletion. \(error), \(error.userInfo)")
+        }
+        //this updates the local array
+        retrieveSubCategories()
     }
 
     // MARK: - Table view data source
@@ -95,17 +114,16 @@ class SubCategoryTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let subCategoryToDelete = subCategories[indexPath.row]
+            deleteSubCategory(subCategory: subCategoryToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
 
     /*
     // Override to support rearranging the table view.
