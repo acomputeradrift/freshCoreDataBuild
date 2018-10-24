@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" id="Idt-dS-ysN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="d1D-cA-Pc9">
                             <connections>
-                                <action selector="addCategory:" destination="usd-pe-Btf" id="2nt-uF-pNp"/>
+                                <action selector="getCategoryName:" destination="usd-pe-Btf" id="3en-LX-FOW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -94,7 +94,7 @@
                     <navigationItem key="navigationItem" id="eMH-JK-PhZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0jy-P9-qiA">
                             <connections>
-                                <action selector="addSubCategory:" destination="6PS-5l-gH6" id="1G9-Vb-1zs"/>
+                                <action selector="getSubCategoryName:" destination="6PS-5l-gH6" id="oKQ-Eh-lfa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

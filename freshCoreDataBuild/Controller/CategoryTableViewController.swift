@@ -17,7 +17,7 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Categories"
         //this updates the local array
-        retrieveCategories()
+        retrieveAllCategories()
     }
     
     // MARK: - TableView Functions
@@ -49,6 +49,29 @@ class CategoryTableViewController: UITableViewController {
     
     //MARK:- Create / Retrieve / Delete CoreData
     
+    @IBAction func getCategoryName(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New Category",
+                                      message: "Add a new category",
+                                      preferredStyle: .alert)
+        let saveAction = UIAlertAction(title: "Add", style: .default) {
+            [unowned self] action in
+            
+            guard let textField = alert.textFields?.first,
+                let categoryName = textField.text else {
+                    return
+            }
+            self.createCategory(categoryName: categoryName)
+            self.retrieveAllCategories()
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel)
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
     func createCategory(categoryName: String){
         let context = AppDelegate.viewContext
         let category = Category(context:context)
@@ -60,7 +83,7 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     
-    func retrieveCategories(){
+    func retrieveAllCategories(){
         let context = AppDelegate.viewContext
         let request =
             NSFetchRequest<NSManagedObject>(entityName: "Category")
@@ -77,30 +100,7 @@ class CategoryTableViewController: UITableViewController {
             print("Could not save deletion. \(error), \(error.userInfo)")
         }
         //this updates the local array
-        retrieveCategories()
-    }
-    
-    @IBAction func addCategory(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Category",
-                                      message: "Add a new category",
-                                      preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Add", style: .default) {
-            [unowned self] action in
-            
-            guard let textField = alert.textFields?.first,
-                let categoryName = textField.text else {
-                    return
-            }
-            self.createCategory(categoryName: categoryName)
-            self.retrieveCategories()
-            self.tableView.reloadData()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        alert.addTextField()
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
+        retrieveAllCategories()
     }
     
     //MARK: - Prepare For Seque To SubCategories

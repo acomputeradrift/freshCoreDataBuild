@@ -19,7 +19,7 @@ class SubCategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = selectedCategoryName
         //this updates the local array
-        retrieveSubCategories()
+        retrieveAllSubCategories()
     }
     
       // MARK: - TableView Functions
@@ -51,11 +51,35 @@ class SubCategoryTableViewController: UITableViewController {
     
      //MARK:- Create / Retrieve / Delete CoreData
     
+    @IBAction func getSubCategoryName(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New SubCategory",
+                                      message: "Add a new sub category",
+                                      preferredStyle: .alert)
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            [unowned self] action in
+            
+            guard let textField = alert.textFields?.first,
+                let subCategoryName = textField.text else {
+                    return
+            }
+            self.createSubCategory(subCategoryName: subCategoryName)
+            self.retrieveAllSubCategories()
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel)
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
     func createSubCategory(subCategoryName: String){
         let context = AppDelegate.viewContext
         let subCategory = SubCategory(context:context)
         subCategory.name = subCategoryName
-        selectedCategory.children = [subCategory]
+        subCategory.parent = selectedCategory
+        //selectedCategory.children = [subCategory]
         do {
             try context.save()
         } catch let error as NSError {
@@ -63,7 +87,7 @@ class SubCategoryTableViewController: UITableViewController {
         }
     }
     
-    func retrieveSubCategories(){
+    func retrieveAllSubCategories(){
         let subSet = selectedCategory.children
         subCategories = subSet?.allObjects as! [SubCategory]
     }
@@ -77,30 +101,9 @@ class SubCategoryTableViewController: UITableViewController {
             print("Could not save deletion. \(error), \(error.userInfo)")
         }
         //this updates the local array
-        retrieveSubCategories()
+        retrieveAllSubCategories()
     }
     
-    @IBAction func addSubCategory(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New SubCategory",
-                                      message: "Add a new sub category",
-                                      preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Save", style: .default) {
-            [unowned self] action in
-            
-            guard let textField = alert.textFields?.first,
-                let subCategoryName = textField.text else {
-                    return
-            }
-            self.createSubCategory(subCategoryName: subCategoryName)
-            self.retrieveSubCategories()
-            self.tableView.reloadData()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        alert.addTextField()
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
-    }
+
 
 }
