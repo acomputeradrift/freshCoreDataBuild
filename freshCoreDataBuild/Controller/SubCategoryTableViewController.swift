@@ -13,8 +13,11 @@ class SubCategoryTableViewController: UITableViewController {
     
     var subCategories: [SubCategory] = []
     var selectedCategoryName = String()
+    
+    //MARK:THIS LINE IS A PROBLEM - it cannot be created except as a managedObject
     var selectedCategory = Category()
-
+    //MARK:THIS LINE IS A PROBLEM
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = selectedCategoryName
