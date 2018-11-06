@@ -77,33 +77,33 @@ class SubCategoryTableViewController: UITableViewController {
     }
     
     func createSubCategory(subCategoryName: String){
-        let context = AppDelegate.viewContext
-        let subCategory = SubCategory(context:context)
-        subCategory.name = subCategoryName
-        subCategory.parent = selectedCategory
-        //selectedCategory.children = [subCategory]
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save subCategory. \(error), \(error.userInfo)")
-        }
+//        let context = AppDelegate.viewContext
+//        let subCategory = SubCategory(context:context)
+//        subCategory.name = subCategoryName
+//        subCategory.parent = selectedCategory
+//        //selectedCategory.children = [subCategory]
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//            print("Could not save subCategory. \(error), \(error.userInfo)")
+//        }
     }
     
     func retrieveAllSubCategories(){
-        let subSet = selectedCategory.children
-        subCategories = subSet?.allObjects as! [SubCategory]
+//        let subSet = selectedCategory.children
+//        subCategories = subSet?.allObjects as! [SubCategory]
     }
     
     func deleteSubCategory(subCategory: SubCategory){
-        let context = AppDelegate.viewContext
-        context.delete(subCategory)
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save deletion. \(error), \(error.userInfo)")
-        }
-        //this updates the local array
-        retrieveAllSubCategories()
+//        let context = AppDelegate.viewContext
+//        context.delete(subCategory)
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//            print("Could not save deletion. \(error), \(error.userInfo)")
+//        }
+//        //this updates the local array
+//        retrieveAllSubCategories()
     }
     
 

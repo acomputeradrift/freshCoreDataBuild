@@ -9,6 +9,6 @@
 import UIKit
 import CoreData
 
-class SubCategory: NSManagedObject {
+class SubCategory: NSObject {
 
 }

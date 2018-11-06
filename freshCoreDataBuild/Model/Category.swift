@@ -9,6 +9,6 @@
 import UIKit
 import CoreData
 
-class Category: NSManagedObject {
+class Category: NSObject{
 
 }

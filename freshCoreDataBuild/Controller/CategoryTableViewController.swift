@@ -73,34 +73,34 @@ class CategoryTableViewController: UITableViewController {
     }
     
     func createCategory(categoryName: String){
-        let context = AppDelegate.viewContext
-        let category = Category(context:context)
-        category.name = categoryName
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+//        let context = AppDelegate.viewContext
+//        let category = Category(context:context)
+//        category.name = categoryName
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//            print("Could not save. \(error), \(error.userInfo)")
+//        }
     }
     
     func retrieveAllCategories(){
-        let context = AppDelegate.viewContext
-        let request =
-            NSFetchRequest<NSManagedObject>(entityName: "Category")
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        categories = try! context.fetch(request) as! [Category]
+//        let context = AppDelegate.viewContext
+//        let request =
+//            NSFetchRequest<NSManagedObject>(entityName: "Category")
+//        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+//        categories = try! context.fetch(request) as! [Category]
     }
     
     func deleteCategory(category: Category){
-        let context = AppDelegate.viewContext
-        context.delete(category)
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save deletion. \(error), \(error.userInfo)")
-        }
-        //this updates the local array
-        retrieveAllCategories()
+//        let context = AppDelegate.viewContext
+//        context.delete(category)
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//            print("Could not save deletion. \(error), \(error.userInfo)")
+//        }
+//        //this updates the local array
+//        retrieveAllCategories()
     }
     
     //MARK: - Prepare For Seque To SubCategories
