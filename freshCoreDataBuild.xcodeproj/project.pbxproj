@@ -10,6 +10,7 @@
 		7D0A311A217E4E9C007BD331 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A3119217E4E9C007BD331 /* Category.swift */; };
 		7D0A311C217E4EB9007BD331 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A311B217E4EB9007BD331 /* SubCategory.swift */; };
 		7D190CCB2190DDA6000B270F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D190CCA2190DDA6000B270F /* GoogleService-Info.plist */; };
+		7D190CCD21921BD6000B270F /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D190CCC21921BD6000B270F /* FireStoreManager.swift */; };
 		7DDB4EB8217E401C00C2D7A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB4EB7217E401C00C2D7A3 /* AppDelegate.swift */; };
 		7DDB4EBD217E401C00C2D7A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DDB4EBB217E401C00C2D7A3 /* Main.storyboard */; };
 		7DDB4EC0217E401C00C2D7A3 /* freshCoreDataBuild.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB4EBE217E401C00C2D7A3 /* freshCoreDataBuild.xcdatamodeld */; };
@@ -26,6 +27,7 @@
 		7D0A3119217E4E9C007BD331 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7D0A311B217E4EB9007BD331 /* SubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		7D190CCA2190DDA6000B270F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D190CCC21921BD6000B270F /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		7DDB4EB4217E401C00C2D7A3 /* freshCoreDataBuild.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freshCoreDataBuild.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DDB4EB7217E401C00C2D7A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DDB4EBC217E401C00C2D7A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				7D0A3119217E4E9C007BD331 /* Category.swift */,
 				7D0A311B217E4EB9007BD331 /* SubCategory.swift */,
+				7D190CCC21921BD6000B270F /* FireStoreManager.swift */,
 				7DDB4EBE217E401C00C2D7A3 /* freshCoreDataBuild.xcdatamodeld */,
 			);
 			path = Model;
@@ -285,6 +288,7 @@
 				7DDB4ED4217E459C00C2D7A3 /* CategoryTableViewCell.swift in Sources */,
 				7DDB4EC0217E401C00C2D7A3 /* freshCoreDataBuild.xcdatamodeld in Sources */,
 				7DDB4ED6217E45BF00C2D7A3 /* SubCategoryTableViewCell.swift in Sources */,
+				7D190CCD21921BD6000B270F /* FireStoreManager.swift in Sources */,
 				7DDB4EB8217E401C00C2D7A3 /* AppDelegate.swift in Sources */,
 				7D0A311C217E4EB9007BD331 /* SubCategory.swift in Sources */,
 				7DDB4ECF217E44FE00C2D7A3 /* SubCategoryTableViewController.swift in Sources */,
