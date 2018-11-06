@@ -33,7 +33,7 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryTableViewCell", for: indexPath)
         let category = categories[indexPath.row]
-        cell.textLabel!.text = category.name
+        //cell.textLabel!.text = category.name
         return cell
     }
     
@@ -109,7 +109,7 @@ class CategoryTableViewController: UITableViewController {
         if segue.identifier == "toSubCategories" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! SubCategoryTableViewController
-                controller.selectedCategoryName = self.categories[indexPath.row].name ?? "Default"
+               // controller.selectedCategoryName = self.categories[indexPath.row].name ?? "Default"
                 controller.selectedCategory = self.categories[indexPath.row]
             }
         }

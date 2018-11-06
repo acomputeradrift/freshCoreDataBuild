@@ -37,7 +37,7 @@ class SubCategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subCategoryTableViewCell", for: indexPath)
         let subCategory = subCategories[indexPath.row]
-        cell.textLabel!.text = subCategory.name
+       // cell.textLabel!.text = subCategory.name
         return cell
     }
     
