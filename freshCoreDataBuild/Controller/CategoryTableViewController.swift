@@ -33,7 +33,7 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryTableViewCell", for: indexPath)
         let category = categories[indexPath.row]
-        //cell.textLabel!.text = category.name
+        cell.textLabel!.text = category.name
         return cell
     }
     
@@ -47,7 +47,7 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     
-    //MARK:- Create / Retrieve / Delete CoreData
+    //MARK:- Create / Read / Update / Delete FireStore
     
     @IBAction func getCategoryName(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "New Category",
@@ -60,7 +60,7 @@ class CategoryTableViewController: UITableViewController {
                 let categoryName = textField.text else {
                     return
             }
-            self.createCategory(categoryName: categoryName)
+            self.createCategoryObject(categoryName: categoryName)
             self.retrieveAllCategories()
             self.tableView.reloadData()
         }
@@ -72,7 +72,10 @@ class CategoryTableViewController: UITableViewController {
         present(alert, animated: true)
     }
     
-    func createCategory(categoryName: String){
+    func createCategoryObject(categoryName: String){
+        let category = Category()
+        category.name = categoryName
+        FIRFireStoreManager.shared.create(categoryName: categoryName)
 //        let context = AppDelegate.viewContext
 //        let category = Category(context:context)
 //        category.name = categoryName

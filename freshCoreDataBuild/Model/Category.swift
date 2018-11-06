@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
-class Category: NSObject{
+class Category{
 
+    var name:String = ""
 }
