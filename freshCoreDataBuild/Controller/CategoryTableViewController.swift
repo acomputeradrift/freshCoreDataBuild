@@ -17,6 +17,7 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Categories"
         //this updates the local array
+       FIRFireStoreManager.shared.read()
         retrieveAllCategories()
     }
     
